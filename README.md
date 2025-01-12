@@ -10,6 +10,7 @@ This project implements an **ESP8266-based ozone generator system** to disinfect
 - **Wi-Fi-enabled ESP8266** for future integration with dashboards
 - **Relay-controlled solenoid valve** to regulate water flow
 - **OLED display (optional)** for local monitoring
+- **UltraSonic Level Kit JSN-SRT04T (optional)** for tank level sensing
 - **Activated carbon filtration (recommended)** for residual ozone removal
 
 ## Components
@@ -18,7 +19,7 @@ This project implements an **ESP8266-based ozone generator system** to disinfect
 |-----------|---------|
 | ESP8266 (NodeMCU/D1 Mini) | Main microcontroller |
 | Ozone Generator | Produces ozone for water disinfection |
-| Water Flow Sensor (YF-S201) | Measures water flow rate |
+| Water Flow Sensor | 5-24VDC Measures water flow rate F=7.5 * Q (Q 1-30L/min) |
 | Relay Module (5V/12V) | Controls the ozone generator |
 | MQ131 Ozone Sensor (or Dissolved Ozone Probe) | Measures ozone concentration |
 | Solenoid Valve | Controls water flow |
@@ -27,10 +28,10 @@ This project implements an **ESP8266-based ozone generator system** to disinfect
 | Power Supply (5V/12V) | Powers the ESP8266 and relay |
 
 ### **Wiring Connections**
-1. **Flow Sensor (YF-S201) → ESP8266**
-   - VCC → 5V
-   - GND → GND
-   - Signal → D2 (GPIO4)
+1. **Flow Sensor (model?) → ESP8266**
+   - Red VCC → 5V
+   - Black GND → GND
+   - Yellow Signal → D2 (GPIO4)
 2. **Relay Module → ESP8266**
    - VCC → 5V
    - GND → GND
@@ -74,7 +75,9 @@ The ESP8266 firmware is written in **Arduino IDE**. The core functionalities inc
 
 ## **Future Improvements**
 - **Wi-Fi Dashboard:** Add MQTT or Blynk for remote monitoring
+- **Alarm:** Volume delivered to tank significantly lower than Avg, O3 level not increasing after Generator runtime
 - **Data Logging:** Store ozone and flow data for analysis
+- **Multiple Tank SUpport:** Multiple installations send data to one monitoring hub/logger
 - **LCD/OLED Display:** Show real-time ozone levels and flow rates
 - **PID Control:** Optimize ozone generation based on real-time feedback
 
