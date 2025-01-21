@@ -11,6 +11,7 @@ This project implements an **ESP8266-based ozone generator system** to disinfect
 - **Relay-controlled solenoid valve** to regulate water flow
 - **OLED display (optional)** for local monitoring
 - **UltraSonic Level Kit JSN-SRT04T (optional)** for tank level sensing
+- **Water and ambient air temperature sensors
 - **Activated carbon filtration (recommended)** for residual ozone removal
 
 ## Components
@@ -22,6 +23,8 @@ This project implements an **ESP8266-based ozone generator system** to disinfect
 | Water Flow Sensor | 5-24VDC Measures water flow rate F=7.5 * Q (Q 1-30L/min) |
 | Relay Module (5V/12V) | Controls the ozone generator |
 | MQ131 Ozone Sensor (or Dissolved Ozone Probe) | Measures ozone concentration |
+| Ultrasonic module |
+| Temp sensors x2 |
 | Solenoid Valve | Controls water flow |
 | OLED Display (optional) | Displays real-time status |
 | Activated Carbon Filter (optional) | Removes residual ozone |
@@ -64,8 +67,11 @@ The ESP8266 firmware is written in **Arduino IDE**. The core functionalities inc
 2. If water flow is detected, the **ESP8266 activates the ozone generator**.
 3. The **MQ131 sensor monitors ozone concentration** in the tank.
 4. If ozone **exceeds 0.5 mg/L**, the **ESP8266 turns off the ozone generator**.
-5. If necessary, the solenoid valve is also controlled to stop excess ozone exposure.
-6. (Optional) Data can be **sent to a web dashboard** for remote monitoring.
+5. Ultrasonic calibrated to low and high tank levels, reports in L and %
+6. If necessary, the solenoid valve is also controlled before tank overflows
+7. Temp sensing of water to be sampled in middle of detected flow
+8. Ambient temp can either be inside tank or atmospheric
+9. (Optional) Data can be **sent to a web dashboard** for remote monitoring.
 
 ## **Safety Considerations**
 - Ensure **proper ventilation** to avoid ozone buildup in enclosed areas.
